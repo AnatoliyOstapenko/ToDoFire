@@ -16,6 +16,8 @@
 		FA525414276F688000AC5F08 /* ToDoTasks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA525412276F688000AC5F08 /* ToDoTasks.storyboard */; };
 		FA525434276F918800AC5F08 /* ToDoTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA525433276F918700AC5F08 /* ToDoTasksViewController.swift */; };
 		FA525438276F941C00AC5F08 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA525437276F941C00AC5F08 /* Constants.swift */; };
+		FA52543D276FBC7400AC5F08 /* White.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA52543C276FBC7400AC5F08 /* White.storyboard */; };
+		FA525440276FBC8900AC5F08 /* WhiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA52543F276FBC8900AC5F08 /* WhiteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		FA525413276F688000AC5F08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ToDoFire/Base.lproj/ToDoTasks.storyboard; sourceTree = "<group>"; };
 		FA525433276F918700AC5F08 /* ToDoTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTasksViewController.swift; sourceTree = "<group>"; };
 		FA525437276F941C00AC5F08 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FA52543C276FBC7400AC5F08 /* White.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = White.storyboard; sourceTree = "<group>"; };
+		FA52543F276FBC8900AC5F08 /* WhiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA406B1A276FF07D005E19EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA525412276F688000AC5F08 /* ToDoTasks.storyboard */,
+				FA525403276E753E00AC5F08 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA406B1B276FF08B005E19EB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA525401276E753E00AC5F08 /* InitialViewController.swift */,
+				FA525433276F918700AC5F08 /* ToDoTasksViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FA406B1D276FF098005E19EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA525437276F941C00AC5F08 /* Constants.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FA5253F1276E753E00AC5F08 = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +94,14 @@
 			children = (
 				FA5253FD276E753E00AC5F08 /* AppDelegate.swift */,
 				FA5253FF276E753E00AC5F08 /* SceneDelegate.swift */,
-				FA525401276E753E00AC5F08 /* InitialViewController.swift */,
-				FA525437276F941C00AC5F08 /* Constants.swift */,
-				FA525433276F918700AC5F08 /* ToDoTasksViewController.swift */,
-				FA525412276F688000AC5F08 /* ToDoTasks.storyboard */,
-				FA525403276E753E00AC5F08 /* Main.storyboard */,
+				FA406B1D276FF098005E19EB /* Model */,
+				FA406B1A276FF07D005E19EB /* View */,
+				FA406B1B276FF08B005E19EB /* Controller */,
 				FA525406276E754300AC5F08 /* Assets.xcassets */,
 				FA525408276E754300AC5F08 /* LaunchScreen.storyboard */,
 				FA52540B276E754300AC5F08 /* Info.plist */,
+				FA52543C276FBC7400AC5F08 /* White.storyboard */,
+				FA52543F276FBC8900AC5F08 /* WhiteViewController.swift */,
 			);
 			path = ToDoFire;
 			sourceTree = "<group>";
@@ -137,6 +167,7 @@
 				FA525407276E754300AC5F08 /* Assets.xcassets in Resources */,
 				FA525405276E753E00AC5F08 /* Main.storyboard in Resources */,
 				FA525414276F688000AC5F08 /* ToDoTasks.storyboard in Resources */,
+				FA52543D276FBC7400AC5F08 /* White.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +182,7 @@
 				FA525402276E753E00AC5F08 /* InitialViewController.swift in Sources */,
 				FA5253FE276E753E00AC5F08 /* AppDelegate.swift in Sources */,
 				FA525400276E753E00AC5F08 /* SceneDelegate.swift in Sources */,
+				FA525440276FBC8900AC5F08 /* WhiteViewController.swift in Sources */,
 				FA525434276F918800AC5F08 /* ToDoTasksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

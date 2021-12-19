@@ -68,7 +68,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="tCp-G0-37E" kind="show" identifier="taskSegue" id="P9v-vf-zHe"/>
+                                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XAW-Pi-y3U"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EN-g5-YED">
@@ -105,20 +105,11 @@
                             <constraint firstItem="YeJ-zB-SRL" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="gCd-AB-czv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="KmS-Yt-Q1E"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-35" y="61"/>
-        </scene>
-        <!--ToDoTasks-->
-        <scene sceneID="ue7-cc-dMG">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ToDoTasks" id="tCp-G0-37E" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="eEy-S9-u9f"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DPx-5I-VCO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="546" y="61"/>
+            <point key="canvasLocation" x="873.91304347826099" y="60.9375"/>
         </scene>
     </scenes>
     <resources>
