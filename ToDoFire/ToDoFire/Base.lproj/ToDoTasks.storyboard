@@ -11,7 +11,7 @@
         <!--Tasks-->
         <scene sceneID="9Je-sj-2ZQ">
             <objects>
-                <viewController id="b8Q-Ei-tIg" customClass="ToDoTasksTableVC" customModule="ToDoFire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b8Q-Ei-tIg" customClass="ToDoTasksViewController" customModule="ToDoFire" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d22-Fl-h4M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,6 +46,9 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="toDoTableView" destination="t5w-Ki-uXD" id="BHS-2g-gzC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfM-fe-5Gl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
