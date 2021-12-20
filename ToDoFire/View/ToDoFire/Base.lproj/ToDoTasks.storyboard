@@ -44,6 +44,9 @@
                     <navigationItem key="navigationItem" title="Tasks" id="1Io-Hi-ijo">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ue7-v5-5p7">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="b8Q-Ei-tIg" id="ySA-be-s5J"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -62,6 +65,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gTj-sJ-ZBA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <color key="tintColor" systemColor="systemTealColor"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

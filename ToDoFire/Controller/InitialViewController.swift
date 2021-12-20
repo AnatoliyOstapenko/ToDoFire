@@ -10,6 +10,13 @@ import UIKit
 class InitialViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var alarmLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +35,10 @@ class InitialViewController: UIViewController {
         present(vc, animated: true, completion: nil)
         
     }
+    
+    @IBAction func registerButtonPressed(_ sender: UIButton) {
+    }
+    
     
 }
 

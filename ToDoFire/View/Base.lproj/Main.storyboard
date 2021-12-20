@@ -83,6 +83,9 @@
                                                 <state key="normal" title="Register">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="registerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qq1-4z-XLw"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -112,7 +115,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="KmS-Yt-Q1E"/>
                     <connections>
+                        <outlet property="alarmLabel" destination="2Vb-dj-csX" id="9dv-RT-tvN"/>
+                        <outlet property="emailTextField" destination="LF7-8d-bPe" id="inh-CV-nZm"/>
                         <outlet property="loginButton" destination="6ha-eY-qY3" id="b6G-bc-mw8"/>
+                        <outlet property="passwordTextField" destination="Sii-ia-mUI" id="LmD-vN-gIG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
