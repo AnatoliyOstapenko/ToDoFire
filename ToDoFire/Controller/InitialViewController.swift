@@ -35,10 +35,12 @@ class InitialViewController: UIViewController {
         // Use the code when you have separate storyboards!!!
         // Switch from Main to ToDoTasks storyboard
         let vc = UIStoryboard(name: "ToDoTasks", bundle: nil).instantiateViewController(withIdentifier: Constants.storyboardIdentifier)
-        
+
         vc.modalPresentationStyle = .fullScreen // open full screen
         present(vc, animated: true, completion: nil)
+
         
+
     }
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {

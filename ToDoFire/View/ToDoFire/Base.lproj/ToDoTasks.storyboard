@@ -11,7 +11,7 @@
         <!--Tasks-->
         <scene sceneID="9Je-sj-2ZQ">
             <objects>
-                <viewController storyboardIdentifier="ToDoTasks" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b8Q-Ei-tIg" customClass="ToDoTasksViewController" customModule="ToDoFire" sceneMemberID="viewController">
+                <viewController id="b8Q-Ei-tIg" customClass="ToDoTasksViewController" customModule="ToDoFire" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d22-Fl-h4M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,9 +60,9 @@
         <!--Navigation Controller-->
         <scene sceneID="4Tr-zb-KDL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yqN-kl-x0R" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ToDoTasks" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yqN-kl-x0R" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gTj-sJ-ZBA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" restorationIdentifier="ToDoTasks" id="gTj-sJ-ZBA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
