@@ -17,8 +17,12 @@ class ToDoTasksViewController: UIViewController {
         
         toDoTableView.dataSource = self
         toDoTableView.delegate = self
+        
+        // change bar buttons color to white
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = .white
 
-        // Do any additional setup after loading the view.
+        
     }
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
