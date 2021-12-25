@@ -24,6 +24,13 @@ class ToDoTasksViewController: UIViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
     }
     
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        
+        // dismiss current screen and go back to previous VC
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
 }
 
 extension ToDoTasksViewController: UITableViewDataSource, UITableViewDelegate {
