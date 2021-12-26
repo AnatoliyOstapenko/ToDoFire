@@ -30,6 +30,20 @@ class ToDoTasksViewController: UIViewController {
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
+        // Create alert and action buttons
+        let alert = UIAlertController(title: "New Task", message: "Add a new task", preferredStyle: .alert)
+        
+        // Add
+        
+        let saveButton = UIAlertAction(title: "SAVE", style: .default) { (action) in
+            print("It has been saved")
+        }
+        let cancelButton = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
+        
+        alert.addAction(saveButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {

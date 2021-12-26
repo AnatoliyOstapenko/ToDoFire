@@ -36,7 +36,7 @@ class InitialViewController: UIViewController {
             }
         }
     }
-    // Clear text field when ViewConroller appears again
+    // Clear text field when ViewController appears again
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         emailTextField.text = ""
