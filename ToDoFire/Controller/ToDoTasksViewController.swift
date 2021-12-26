@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ToDoTasksViewController: UIViewController {
     
@@ -24,17 +25,27 @@ class ToDoTasksViewController: UIViewController {
 
         
     }
+    
+    
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        
-        // dismiss current screen and go back to previous VC
-        self.dismiss(animated: true, completion: nil)
-        
+         
+        // Sign out user
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            
+            // dismiss current screen and go back to previous VC
+            self.dismiss(animated: true, completion: nil)
+            
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
-    
 }
 
 extension ToDoTasksViewController: UITableViewDataSource, UITableViewDelegate {
