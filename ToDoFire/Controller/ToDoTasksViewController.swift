@@ -44,7 +44,10 @@ class ToDoTasksViewController: UIViewController {
             guard error == nil, let documents = querySnapshot?.documents else { return }
             
             for doc in documents {
-                print(doc.data())
+                let data = doc.data()
+                // Retrieve text from data in Firebase fields
+                guard let text = data["bodyField"] as? String else { return }
+                print(text)
             }
         }
     }
