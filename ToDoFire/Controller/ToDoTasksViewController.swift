@@ -12,7 +12,7 @@ class ToDoTasksViewController: UIViewController {
     
     let db = Firestore.firestore() // invoke Firestore
     
-    var task: [Task] = [
+    var tasks: [Task] = [
         
         Task(user: "mail@mail.com", newTask: "Hello there!"),
         Task(user: "george@mail.com", newTask: "Goodbuy everybody"),
@@ -50,15 +50,26 @@ class ToDoTasksViewController: UIViewController {
         let saveButton = UIAlertAction(title: "SAVE", style: .default) { (action) in
             // Unwraping text from textfield and check for empty string
             // Check for current user is admitted
-            guard let textField = alert.textFields?.first?.text, textField != "", let id = Auth.auth().currentUser?.email else {
+            guard let taskText = alert.textFields?.first?.text, taskText != "", let userEmail = Auth.auth().currentUser?.email else {
                 
                 return
             }
             // Actions when button pressed
-            self.db.collection("newTask").addDocument(data: <#T##[String : Any]#>, completion: <#T##((Error?) -> Void)?##((Error?) -> Void)?##(Error?) -> Void#>)
+            // Save data to Firestore
+            // newTask - collection name in Firestore, senderField and bodyField are field names in Firestore
+            self.db.collection("newTask").addDocument(data: [
+                
+                "senderField": userEmail,
+                "bodyField": taskText
             
             
-            print("It has been saved \(textField) and \(id)")
+            ]) { (error) in
+                guard error != nil else { return }
+                print("There was a issue with saving data to Firestore")
+            }
+            
+            
+            print("It has been saved \(taskText) and \(userEmail)")
         }
         let cancelButton = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
         
@@ -86,7 +97,7 @@ class ToDoTasksViewController: UIViewController {
 // MARK: - Data Source Method
 extension ToDoTasksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return task.count
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,7 +107,7 @@ extension ToDoTasksViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .clear // clear row background
         cell.textLabel?.textColor = .white // set white color to text row
         
-        cell.textLabel?.text = task[indexPath.row].newTask
+        cell.textLabel?.text = tasks[indexPath.row].newTask
         
         
         return cell
