@@ -33,8 +33,20 @@ class ToDoTasksViewController: UIViewController {
         // change bar buttons color to white
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
+        
+        readData()
 
         
+    }
+    // Read data from Firebase
+    func readData() {
+        db.collection("newTask").getDocuments() { (querySnapshot, error) in
+            guard error == nil, let documents = querySnapshot?.documents else { return }
+            
+            for doc in documents {
+                print(doc.data())
+            }
+        }
     }
     
     
