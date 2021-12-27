@@ -112,7 +112,7 @@ class ToDoTasksViewController: UIViewController {
     }
 }
 // MARK: - Data Source Method
-extension ToDoTasksViewController: UITableViewDataSource, UITableViewDelegate {
+extension ToDoTasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
@@ -130,5 +130,14 @@ extension ToDoTasksViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    
+}
+// MARK: - Table View Delegate Method
+extension ToDoTasksViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("wow)))")
+        }
+    }
     
 }
