@@ -26,14 +26,16 @@ class ToDoTasksViewController: UIViewController {
         // change bar buttons color to white
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
-        
         readData()
 
         
     }
     // Read data from Firebase
     func readData() {
-        db.collection("newTask").getDocuments() { (querySnapshot, error) in
+        db.collection("newTask").addSnapshotListener() { (querySnapshot, error) in
+            
+            self.tasks = [] // Avoid duplicate data in array
+            
             guard error == nil, let documents = querySnapshot?.documents else { return }
             
             for doc in documents {
@@ -44,9 +46,9 @@ class ToDoTasksViewController: UIViewController {
                 let item = Task(user: user, newTask: text)
                 self.tasks.append(item)
                 
-                self.toDoTableView.reloadData()
-                print("user is \(user) task is \"\(text)\"")
-                
+                DispatchQueue.main.async {
+                    self.toDoTableView.reloadData()
+                }
                 
             }
         }
