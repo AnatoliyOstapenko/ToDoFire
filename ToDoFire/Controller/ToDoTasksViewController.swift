@@ -10,6 +10,17 @@ import Firebase
 
 class ToDoTasksViewController: UIViewController {
     
+    let db = Firestore.firestore() // invoke Firestore
+    
+    var task: [Task] = [
+        
+        Task(user: "mail@mail.com", newTask: "Hello there!"),
+        Task(user: "george@mail.com", newTask: "Goodbuy everybody"),
+        Task(user: "madlene@mail.com", newTask: "Ok")
+        
+        
+    ]
+    
     
     @IBOutlet weak var toDoTableView: UITableView!
     
@@ -33,10 +44,21 @@ class ToDoTasksViewController: UIViewController {
         // Create alert and action buttons
         let alert = UIAlertController(title: "New Task", message: "Add a new task", preferredStyle: .alert)
         
-        // Add
+        // Add text field to alert
+        alert.addTextField()
         
         let saveButton = UIAlertAction(title: "SAVE", style: .default) { (action) in
-            print("It has been saved")
+            // Unwraping text from textfield and check for empty string
+            // Check for current user is admitted
+            guard let textField = alert.textFields?.first?.text, textField != "", let id = Auth.auth().currentUser?.email else {
+                
+                return
+            }
+            // Actions when button pressed
+            self.db.collection("newTask").addDocument(data: <#T##[String : Any]#>, completion: <#T##((Error?) -> Void)?##((Error?) -> Void)?##(Error?) -> Void#>)
+            
+            
+            print("It has been saved \(textField) and \(id)")
         }
         let cancelButton = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
         
@@ -61,18 +83,20 @@ class ToDoTasksViewController: UIViewController {
         }
     }
 }
-
+// MARK: - Data Source Method
 extension ToDoTasksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return task.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
         
         
-        cell.backgroundColor = .clear
-        cell.textLabel?.text = "index path row = \(indexPath.row)"
+        cell.backgroundColor = .clear // clear row background
+        cell.textLabel?.textColor = .white // set white color to text row
+        
+        cell.textLabel?.text = task[indexPath.row].newTask
         
         
         return cell
