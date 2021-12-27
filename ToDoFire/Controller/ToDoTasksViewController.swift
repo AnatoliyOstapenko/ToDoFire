@@ -12,14 +12,7 @@ class ToDoTasksViewController: UIViewController {
     
     let db = Firestore.firestore() // invoke Firestore
     
-    var tasks: [Task] = [
-        
-        Task(user: "mail@mail.com", newTask: "Hello there!"),
-        Task(user: "george@mail.com", newTask: "Goodbuy everybody"),
-        Task(user: "madlene@mail.com", newTask: "Ok")
-        
-        
-    ]
+    var tasks: [Task] = []
     
     
     @IBOutlet weak var toDoTableView: UITableView!
@@ -45,9 +38,16 @@ class ToDoTasksViewController: UIViewController {
             
             for doc in documents {
                 let data = doc.data()
-                // Retrieve text from data in Firebase fields
-                guard let text = data["bodyField"] as? String else { return }
-                print(text)
+                // Retrieve user and text from data in Firebase fields
+                guard let text = data["bodyField"] as? String, let user = data["senderField"] as? String else { return }
+                // Set data in array to show it on TableView
+                let item = Task(user: user, newTask: text)
+                self.tasks.append(item)
+                
+                self.toDoTableView.reloadData()
+                print("user is \(user) task is \"\(text)\"")
+                
+                
             }
         }
     }
