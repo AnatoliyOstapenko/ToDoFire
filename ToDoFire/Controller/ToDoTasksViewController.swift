@@ -40,8 +40,9 @@ class ToDoTasksViewController: UIViewController {
             
             for doc in documents {
                 let data = doc.data()
-                // Retrieve user and text from data in Firebase fields
+                // Retrieve id, user and text from data in Firebase fields
                 guard let text = data["bodyField"] as? String, let user = data["senderField"] as? String else { return }
+                //, let id = data["idField"] as? String
                 // Set data in array to show it on TableView
                 let item = Task(user: user, newTask: text)
                 self.tasks.append(item)
@@ -67,25 +68,30 @@ class ToDoTasksViewController: UIViewController {
         let saveButton = UIAlertAction(title: "SAVE", style: .default) { (action) in
             // Unwraping text from textfield and check for empty string
             // Check for current user is admitted
-            guard let taskText = alert.textFields?.first?.text, taskText != "", let userEmail = Auth.auth().currentUser?.email else {
-                
-                return
-            }
+            guard let taskText = alert.textFields?.first?.text, taskText != "", let userEmail = Auth.auth().currentUser?.email else { return }
+
             // Actions when button pressed
             // Save data to Firestore
             // newTask - collection name in Firestore, senderField and bodyField are field names in Firestore
-            self.db.collection("newTask").addDocument(data: [
+            
+            
+            // Create ID due to assign ID to document name - it's important to have ability to delete data later
+            let id = self.db.collection("newTask").document().documentID
+            print("id reference : \(id)")
+            
+            self.db.collection("newTask").document(id).setData([
                 
+                "idField": id,
                 "senderField": userEmail,
                 "bodyField": taskText
-            
             
             ]) { (error) in
                 guard error != nil else { return }
                 print("There was a issue with saving data to Firestore")
             }
             
-            
+    
+
             print("It has been saved \(taskText) and \(userEmail)")
         }
         let cancelButton = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
@@ -125,8 +131,7 @@ extension ToDoTasksViewController: UITableViewDataSource {
         cell.textLabel?.textColor = .white // set white color to text row
         
         cell.textLabel?.text = tasks[indexPath.row].newTask
-        
-        
+
         return cell
     }
     
@@ -134,10 +139,29 @@ extension ToDoTasksViewController: UITableViewDataSource {
 }
 // MARK: - Table View Delegate Method
 extension ToDoTasksViewController: UITableViewDelegate {
+    
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+    
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("wow)))")
+            
+            
+//            db.collection("newTask").document(tasks[indexPath.row].id).delete() { error in
+//                if let error = error {
+//                    print("Error removing document: \(error)")
+//                } else {
+//                    print("Document successfully removed!")
+//                }
+//            }
+            
+
+            }
+            // WARNING!!!!!! Firestore.firestore().collection("newTask").document(self.prizes[indexPath.row].id).delete()
+            
+            //print("user ID: \(userID)")
         }
-    }
     
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 struct Task {
+   // let id: String
     let user: String
     let newTask: String
 }
