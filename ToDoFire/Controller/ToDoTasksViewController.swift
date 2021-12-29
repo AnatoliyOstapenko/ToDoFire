@@ -69,7 +69,12 @@ class ToDoTasksViewController: UIViewController {
         let saveButton = UIAlertAction(title: "SAVE", style: .default) { (action) in
             // Unwraping text from textfield and check for empty string
             // Check for current user is admitted
-            guard let taskText = alert.textFields?.first?.text, taskText != "", let userEmail = Auth.auth().currentUser?.email else { return }
+            guard let taskText = alert.textFields?.first?.text, taskText != "", let userEmail = Auth.auth().currentUser?.email else {
+                
+                Alert.customAlert("Don't leave task field empty, set task name", self)
+                
+                
+                return }
             
             // Actions when button pressed
             // Save data to Firestore
@@ -89,6 +94,7 @@ class ToDoTasksViewController: UIViewController {
             ]) { (error) in
                 guard error != nil else { return }
                 print("There was a issue with saving data to Firestore")
+                Alert.customAlert("There was a issue with saving data to Firestore", self)
             }
             
             print("It has been saved \(taskText) and \(userEmail)")
@@ -114,6 +120,7 @@ class ToDoTasksViewController: UIViewController {
             
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
+            Alert.customAlert("Error signing out", self)
         }
     }
 }
@@ -147,6 +154,7 @@ extension ToDoTasksViewController: UITableViewDelegate {
             db.collection("newTask").document(tasks[indexPath.row].id).delete() { error in
                 if let error = error {
                     print("Error removing document: \(error)")
+                    Alert.customAlert("Error removing task", self)
                 } else {
                     print("Document successfully removed!")
                     // pop up custom alert

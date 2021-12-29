@@ -15,7 +15,7 @@ class Constants {
 
 
 class Alert {
-    // patern for custom alerts
+    // pattern for custom alerts
     static func customAlert(_ textAlert: String, _ viewController: UIViewController) {
         let alert = UIAlertController(title: nil, message: "\(textAlert)", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
