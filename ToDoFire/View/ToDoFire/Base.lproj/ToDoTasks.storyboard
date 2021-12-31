@@ -42,7 +42,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="1Io-Hi-ijo">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JWP-X7-2Nn">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="JWP-X7-2Nn">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="b8Q-Ei-tIg" id="NB4-4R-KD9"/>

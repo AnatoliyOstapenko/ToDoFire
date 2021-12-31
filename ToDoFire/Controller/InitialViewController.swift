@@ -15,7 +15,7 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
-    
+
     
     
     
@@ -49,6 +49,7 @@ class InitialViewController: UIViewController {
             warningText("Don't leave an empty email or password line")
             return
         }
+        
         // Sign in existing users
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             // check for incorrect email or password

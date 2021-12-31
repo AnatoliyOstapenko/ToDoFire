@@ -13,6 +13,9 @@ class ToDoTasksViewController: UIViewController {
     let db = Firestore.firestore() // invoke Firestore
     
     var tasks: [Task] = []
+    //var collection: String?
+    
+    //let collection = Auth.auth().currentUser?.email
     
     
     @IBOutlet weak var toDoTableView: UITableView!
@@ -26,13 +29,18 @@ class ToDoTasksViewController: UIViewController {
         // change bar buttons color to white
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
+        
+        print(collection())
         readData()
         
         
     }
     // Read data from Firebase
     func readData() {
-        db.collection("newTask").addSnapshotListener() { (querySnapshot, error) in
+        
+        //guard let coll = collection else { return }
+  
+        db.collection(collection()).order(by: "dateField").addSnapshotListener() { (querySnapshot, error) in
             
             self.tasks = [] // Avoid duplicate data in array
             
@@ -55,6 +63,17 @@ class ToDoTasksViewController: UIViewController {
             }
         }
     }
+    // Method to retrieve of user email from Firebase
+    func collection() -> String {
+
+        if let collection = Auth.auth().currentUser?.email {
+            return collection
+        } else {
+            Alert.customAlert("Error with retrieving user email", self)
+            return "Error with user email"
+        }
+        
+    }
     
     
     
@@ -69,35 +88,38 @@ class ToDoTasksViewController: UIViewController {
         let saveButton = UIAlertAction(title: "SAVE", style: .default) { (action) in
             // Unwraping text from textfield and check for empty string
             // Check for current user is admitted
-            guard let taskText = alert.textFields?.first?.text, taskText != "", let userEmail = Auth.auth().currentUser?.email else {
+           
+            guard let updatedText = alert.textFields?.first?.text, let userEmail = Auth.auth().currentUser?.email else {
                 
                 Alert.customAlert("Don't leave task field empty, set task name", self)
-                
-                
                 return }
             
             // Actions when button pressed
             // Save data to Firestore
             // newTask - collection name in Firestore, senderField and bodyField are field names in Firestore
             
-            
             // Create ID due to assign ID to document name - it's important to have ability to delete data later
-            let id = self.db.collection("newTask").document().documentID
+            let id = self.db.collection(self.collection()).document().documentID
             print("id reference : \(id)")
             
-            self.db.collection("newTask").document(id).setData([
+//            self.collection = userEmail // set collection name by user email
+//            print("created a new collection \(userEmail)")
+            
+            // Create new elements in Firebase
+            self.db.collection(self.collection()).document(id).setData([
                 
                 "idField": id,
                 "senderField": userEmail,
-                "bodyField": taskText
+                "bodyField": updatedText,
+                "dateField": Date().timeIntervalSince1970 // ordering tasks
                 
             ]) { (error) in
                 guard error != nil else { return }
-                print("There was a issue with saving data to Firestore")
                 Alert.customAlert("There was a issue with saving data to Firestore", self)
             }
             
-            print("It has been saved \(taskText) and \(userEmail)")
+            
+            print("It has been saved: \(updatedText) in collection \(userEmail)")
         }
         
         let cancelButton = UIAlertAction(title: "CANCEL", style: .cancel, handler: nil)
@@ -119,8 +141,7 @@ class ToDoTasksViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
             
         } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-            Alert.customAlert("Error signing out", self)
+            Alert.customAlert("Error signing out \(signOutError)", self)
         }
     }
 }
@@ -132,8 +153,7 @@ extension ToDoTasksViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
-        
-        
+     
         cell.backgroundColor = .clear // clear row background
         cell.textLabel?.textColor = .white // set white color to text row
         
@@ -147,11 +167,14 @@ extension ToDoTasksViewController: UITableViewDataSource {
 
 extension ToDoTasksViewController: UITableViewDelegate {
     
+    
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            
+
             // Delete data from Firebase
-            db.collection("newTask").document(tasks[indexPath.row].id).delete() { error in
+            db.collection(collection()).document(tasks[indexPath.row].id).delete() { error in
                 if let error = error {
                     print("Error removing document: \(error)")
                     Alert.customAlert("Error removing task", self)
@@ -161,6 +184,8 @@ extension ToDoTasksViewController: UITableViewDelegate {
                     Alert.customAlert("Task successfuly removed", self)
                 }
             }
+            
+            tableView.reloadData()
         }
     }
 }
